@@ -1,0 +1,256 @@
+/* Configurações Globais e Cores */
+:root {
+    --bg-color: #DCDCF1;
+    --cloud-color: #f0f0ff;
+    --text-color: #333;
+    --heading-color: #2A2A8C;
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --border-radius: 15px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    position: relative; /* Necessário para o posicionamento das nuvens */
+    overflow-x: hidden; /* Previne a barra de rolagem horizontal */
+}
+
+/* --- ESTILOS DAS NUVENS --- */
+#background-clouds {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Coloca as nuvens atrás de todo o conteúdo */
+    overflow: hidden;
+}
+
+.cloud {
+    width: 200px;
+    height: 60px;
+    background: var(--cloud-color);
+    border-radius: 100px;
+    position: absolute;
+}
+
+/* Os pseudo-elementos ::before e ::after criam as outras partes da nuvem */
+.cloud:before, .cloud:after {
+    content: '';
+    position: absolute;
+    background: var(--cloud-color);
+    width: 100px;
+    height: 80px;
+    border-radius: 50%;
+    top: -40px;
+    left: 25px;
+}
+
+.cloud:after {
+    width: 120px;
+    height: 120px;
+    top: -65px;
+    left: auto;
+    right: 15px;
+}
+
+/* Animação para mover as nuvens */
+@keyframes moveClouds {
+    0% { transform: translateX(-250px); }
+    100% { transform: translateX(100vw); }
+}
+
+/* Posicionamento e animação de cada nuvem */
+.x1 {
+    top: 5%;
+    transform: scale(0.7);
+    animation: moveClouds 25s linear infinite;
+    animation-delay: -5s;
+}
+
+.x2 {
+    top: 15%;
+    left: 200px;
+    transform: scale(0.4);
+    animation: moveClouds 30s linear infinite;
+}
+
+.x3 {
+    top: 25%;
+    transform: scale(0.5);
+    animation: moveClouds 20s linear infinite;
+    animation-delay: -10s;
+}
+
+.x4 {
+    top: 60%;
+    transform: scale(0.6);
+    animation: moveClouds 18s linear infinite;
+    animation-delay: -15s;
+}
+
+.x5 {
+    top: 75%;
+    transform: scale(0.4);
+    animation: moveClouds 22s linear infinite;
+    animation-delay: -2s;
+}
+
+/* --- RESTANTE DO CSS (sem alterações) --- */
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    position: relative; /* Garante que o container fique sobre as nuvens */
+    z-index: 2;
+}
+
+.hero {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+}
+
+.main-title {
+    font-family: 'Caveat', cursive;
+    font-size: 6rem;
+    color: var(--heading-color);
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--heading-color);
+    opacity: 0.9;
+}
+
+.section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 4rem;
+    color: var(--heading-color);
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+section {
+    padding: 2rem;
+    margin-bottom: 2rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius);
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--card-bg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+#about p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.image-button img {
+    height: 40px;
+    width: auto;
+    transition: transform 0.2s ease, opacity 0.2s ease; /* Animação suave */
+}
+
+/* Efeito ao passar o mouse por cima do link */
+.image-button:hover img {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.project-info h3 {
+    color: var(--heading-color);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .main-title { font-size: 4rem; }
+    .section-title { font-size: 3rem; }
+    .container { padding: 0 1rem; }
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profile-photo { margin-bottom: 1rem; }
+}
